@@ -25,7 +25,7 @@
         </thead>
 
         <tbody>
-            <!-- La extensión "each" de thymeleaf (th) es el equivalente a un for mejorado -->
+           
             <tr th:each=" empleado : ${empleados}">
                 <td th:text="${empleado.id}"></td>
                 <td th:text="${empleado.nombre}"></td>
@@ -35,9 +35,9 @@
                 <td th:text="${empleado.departamento.nombre}"></td>
 
                 <td>
-                    <!-- Esto muestra un enlace junto a cada empleado en el listado. Hay que crear el metodo actualizar en el MainConroller -->
+                   
                     <a th:href="@{/frmActualizar/}+${empleado.id}">Actualizar</a>
-                    <!-- lo que hay tras la / es una url, es un patrón. Debe existir algo que responda exactamente a lo que pone aqui -->
+                   
                     <a th:href="@{/borrar/}+${empleado.id}">Borrar</a>
                     <a th:href="@{/detalles/}+${empleado.id}">Ver detalles</a>
 
