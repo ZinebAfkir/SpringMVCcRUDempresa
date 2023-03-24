@@ -54,7 +54,7 @@ public class MainController {
        
         List<Empleado> empleados = empleadoService.findAll();
         
-        ModelAndView mav = new ModelAndView("views/listarEmpelado");
+        ModelAndView mav = new ModelAndView("views/listarEmpleado");
         
         mav.addObject("empleados",empleados);
         return mav; 
@@ -64,7 +64,7 @@ public class MainController {
      * Muestra el formulario de alta de empleado
      */
 
-     @GetMapping("/FormularioAltaEmpleado") // aqui es el nombre de la url que va a resoponder y le damos el nombre que queramos
+     @GetMapping("/frmAltaEmpleado") // aqui es el nombre de la url que va a resoponder y le damos el nombre que queramos
      public String formularioAltaEmpleado(Model model){
 
 
@@ -72,7 +72,8 @@ public class MainController {
      Empleado empleado = new Empleado();
 
         model.addAttribute("empleado",empleado);
-        model.addAttribute("departamentos", departamentos);
+        model.addAttribute("departamentos", departamentos); // aqui esta esperando recibir 
+       // "departamento" de FormularioAltaEmpleado <option th:each="departamento: ${departamentos}" 
 
         return "views/FormularioAltaEmpleado"; // esto hace referencia a la views llamada  FormularioAltaEmpleado
         //creada en templates
@@ -89,13 +90,13 @@ public class MainController {
 
          @PostMapping("/altaModificacionEmpleado") //post es para que lo que envie este dentro del protocolo es decir no lo puede ver todo el mundo
         public String altaEmpleado(@ModelAttribute Empleado empleado,
-                      @RequestParam(name ="numerosTelefonos") String telefonosRecibidos, 
-                      @RequestParam(name ="emailsCorreos") String correosRecibidos){
+                      @RequestParam(name ="numerosTelefono") String telefonosRecibidos, 
+                      @RequestParam(name ="emailsCorreo") String correosRecibidos){
 
 
             LOG.info("Telefonos recibidos: " + telefonosRecibidos);
  
-            empleadoService.save(empleado); //guarada el empleado en la bbdd empleado
+            empleadoService.save(empleado); //guarda el empleado en la bbdd empleado
 
 
             List<String> listadoNumerosTelefonos = null;
@@ -150,7 +151,7 @@ public class MainController {
  * Metodo para actualizar los datos de un empleado dado su id
  */
 
-       @GetMapping("/fmrActualizar/{id}")
+       @GetMapping("/frmActualizar/{id}")
        public String frmactualizaEmpleado(@PathVariable(name ="id") int idEmpleado, // este metodo le paso el id de un estudiante
                                          Model model){ 
 
@@ -202,9 +203,7 @@ public class MainController {
 
        }
 
-       /**
-     * Métodoque encuentre los telefonso de cada estudiante: (hecho por nosotras):
-     */
+      
     @GetMapping("/detalles/{id}")
     public String detallesEmpelado(@PathVariable(name = "id") int id, Model model) {
 

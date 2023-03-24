@@ -62,7 +62,13 @@ public class Empleado implements Serializable {
     
      @OneToMany (fetch = FetchType.LAZY, cascade =CascadeType.REMOVE, mappedBy = "empleado" ) //uno a muchos, es decir 
      //un empleado puede tener muchos telefonos y muchos correos
+    
     private List<Telefono> telefonos; 
+
+    //Antes de eliminar un empleado primero tengo que eliminar sus hijos que son los correos
+    // y telefonos
+    @OneToMany (fetch = FetchType.LAZY, cascade =CascadeType.REMOVE, mappedBy = "empleado" ) 
+
     private List<Correo> correos;
 
     

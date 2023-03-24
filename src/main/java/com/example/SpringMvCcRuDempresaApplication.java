@@ -56,7 +56,6 @@ public class SpringMvCcRuDempresaApplication implements CommandLineRunner {
                 .apellidos("Agulló García")
                 .fechaAlta(LocalDate.of(2008, Month.APRIL, 2))
                 .genero(Genero.MUJER)
-
                 .departamento(departamentoService.findById(1))
                 .build());
 

@@ -40,3 +40,4 @@ public class Departamento implements Serializable{
     private List<Empleado> empleados;
 
 }
+

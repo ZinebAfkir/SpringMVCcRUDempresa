@@ -43,8 +43,8 @@ public class EmpleadoServiceImpl implements  EmpleadoService{
 
     @Override
     @Transactional
-    public void delete(Empleado estudiante) {
-        empleadoDao.delete(estudiante);
+    public void delete(Empleado empleado) {
+        empleadoDao.delete(empleado);
         
     }
 

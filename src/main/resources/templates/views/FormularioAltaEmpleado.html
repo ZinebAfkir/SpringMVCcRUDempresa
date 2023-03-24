@@ -45,24 +45,23 @@
 
        
         <label for="idDepartamento">departamento:</label>
-        
         <select name="departamento" id="idDepartamento" required>
             <option></option>
             
-            <option th:each="departamento : ${departamentoes}" 
+            <option th:each="departamento : ${departamentos}" 
             th:value="${departamento.id}" th:text="${departamento.nombre}"
                 th:selected="${empleado.departamento != null and departamento.id == empleado.departamento.id}"></option>
                    </select>
 
-        <label for="numerosTelefonos">Telefono(s)</label>
-        <input type="text" name="nuemerosTelefonos" id="numerosTelefonos"
+        <label for="numerosTelefono">Telefono(s)</label>
+        <input type="text" name="numerosTelefono" id="numerosTelefono"
             placeholder="Uno o varios, separados por punto y coma" 
             th:value="${telefonos}">
        
 
         <!-- Igual para correos: -->
-        <label for="emailsCorreos">Correo(s)</label>
-        <input type="text" name="nuemerosTelefonos" id="emailsCorreos"
+        <label for="emailsCorreo">Correo(s)</label>
+        <input type="text" name="emailsCorreo" id="emailsCorreo"
             placeholder="Uno o varios, separados por punto y coma" 
             th:value="${correos}">
 
