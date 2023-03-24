@@ -49,7 +49,7 @@ public class MainController {
 
 
    //El siguiente metodo devuelve un listado de empleados
-    @GetMapping("/listar") 
+    @GetMapping("/listarEmpleado") 
     public ModelAndView listar(){ 
        
         List<Empleado> empleados = empleadoService.findAll();
@@ -64,7 +64,7 @@ public class MainController {
      * Muestra el formulario de alta de empleado
      */
 
-     @GetMapping("/frmAltaEst") // aqui es el nombre de la url que va a resoponder y le damos el nombre que quieras no tiene porq ser igual que el nombre de abajo 
+     @GetMapping("/FormularioAltaEmpleado") // aqui es el nombre de la url que va a resoponder y le damos el nombre que queramos
      public String formularioAltaEmpleado(Model model){
 
 
@@ -74,7 +74,8 @@ public class MainController {
         model.addAttribute("empleado",empleado);
         model.addAttribute("departamentos", departamentos);
 
-        return "views/FormularioAltaEmpleado";
+        return "views/FormularioAltaEmpleado"; // esto hace referencia a la views llamada  FormularioAltaEmpleado
+        //creada en templates
 
      }
 
@@ -98,7 +99,6 @@ public class MainController {
 
 
             List<String> listadoNumerosTelefonos = null;
-
             if(telefonosRecibidos != null) {
             String[] arrayTelefonos = telefonosRecibidos.split(";"); 
          
@@ -141,8 +141,7 @@ public class MainController {
             }
 
         
-            return "redirect:/listar"; // es a la url a cual nos llevara despues de haber rellenado el formulario del estudiante 
-           //lo anterior me redirecta a la url o pagina listar 
+            return "redirect:/listarEmpleado"; 
         }
      
 
@@ -172,28 +171,26 @@ public class MainController {
 
         List<Correo> todosCorreos = correoService.findAll();
 
-
-
-       List<Correo> correosEmpleado = todosCorreos
+        List<Correo> correosEmpleado = todosCorreos
        .stream()
        .filter(correo -> correo.getEmpleado().getId() == idEmpleado)
        .collect(Collectors.toList());
 
 
 
-        String emailsDecorreo = correosEmpleado.stream().map(t -> t.getEmail())
+        String emailsDeCorreo = correosEmpleado.stream().map(t -> t.getEmail())
                .collect(Collectors.joining(";"));
 
-
-
-        model.addAttribute("correos", correosEmpleado);
+        model.addAttribute("correos", emailsDeCorreo);
 
 
         List<Departamento> departamentos =departamentoService.findAll();
+        
         model.addAttribute("departamentos", departamentos);
 
         return "views/FormularioAltaEmpleado";
 
+        
        }
 
        @GetMapping("/borrar/{id}")
@@ -201,7 +198,7 @@ public class MainController {
 
         empleadoService.delete(empleadoService.findById(idEmpleado));
          
-         return "redirect:/listar";
+         return "redirect:/listarEmpleado";
 
        }
 
@@ -224,6 +221,7 @@ public class MainController {
         model.addAttribute("empleado", empleado);
 
        
-        return "views/detalleEmpleado";
+        return "views/detalleEmpleado"; // esto hace referencia a la views llamada  detalleEmpleado
+        //creada en templates
     }
 }
